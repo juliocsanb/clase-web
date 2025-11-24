@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     return res;
   } catch {
     return NextResponse.json(
-      { error: "No se pudo crear la cookie de sesión" },
+      { error: "No se pudo crear la cookie de sesión, revisa bien tus credenciales" },
       { status: 401 }
     );
   }
