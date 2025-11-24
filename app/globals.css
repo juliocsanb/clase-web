@@ -1,0 +1,33 @@
+/* styles/globals.css — Tailwind v4 */
+@import "tailwindcss";
+
+html, body { background: var(--bg); color: var(--text); }
+
+/* Si no usas theme.css, puedes definir aquí las variables: */
+:root {
+  --primary: #1f6feb;
+  --error:   #d32f2f;
+  --ok:      #2e7d32;
+  --bg:      #0b1020;
+  --card:    #11172a;
+  --text:    #e6e8ef;
+  --muted:   #9aa4bf;
+  --border:  #1f2a44;
+  --space:   12px;
+  --radius:  12px;
+}
+
+@theme {
+  --color-primary: #1f6feb;
+  --color-error:   #d32f2f;
+  --color-ok:      #2e7d32;
+  --color-bg:      #0b1020;
+  --color-card:    #11172a;
+  --color-text:    #e6e8ef;
+  --color-muted:   #9aa4bf;
+  --color-border:  #1f2a44;
+
+  --radius-xl: 12px;
+  --spacing-base: 12px;
+  --shadow-card: 0 10px 30px rgba(0,0,0,.25);
+}
