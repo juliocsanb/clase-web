@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     const { idToken, remember } = await req.json();
     if (!idToken)
-      return NextResponse.json({ error: "Falta idToken, el token que te arroja firebase, mando!!!!" }, { status: 400 });
+      return NextResponse.json({ error: "Falta idToken, el token que te arroja firebase!!!" }, { status: 400 });
 
     // * 1000 es por milisegundos
     const expiresIn = (remember ? MAX_AGE : 2 * 60 * 60) * 1000;
