@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type Props = {
   // "public" = landing / login / sign-up
@@ -12,6 +13,24 @@ type Props = {
 export default function Header({ variant = "public" }: Props) {
   const router = useRouter();
   const isDashboard = variant === "dashboard";
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  async function handleLogout() {
+    setLoggingOut(true);
+    try {
+      await fetch("/api/sessionLogout", {
+        method: "POST",
+      });
+      // después de cerrar sesión, mandar al landing
+      router.push("/");
+      router.refresh();
+    } catch (e) {
+      console.error("Error al cerrar sesión", e);
+      // si quisieras podrías mostrar un toast o algo aquí
+    } finally {
+      setLoggingOut(false);
+    }
+  }
 
   return (
     <header className="sticky top-0 z-50 backdrop-blur bg-slate-950/70 border-b border-slate-800">
@@ -37,7 +56,6 @@ export default function Header({ variant = "public" }: Props) {
             <Link href="/dashboard/categories" className="hover:text-white">
               Categorías
             </Link>
-            {/* aquí luego puedes agregar más: /dashboard/posts, etc. */}
           </nav>
         ) : (
           <nav className="ml-8 hidden md:flex gap-6 text-sm text-slate-300">
@@ -56,14 +74,14 @@ export default function Header({ variant = "public" }: Props) {
         {/* Zona derecha: auth buttons / logout */}
         <div className="ml-auto flex items-center gap-2">
           {isDashboard ? (
-            <form action="/api/sessionLogout" method="POST">
-              <button
-                type="submit"
-                className="inline-flex items-center rounded-xl bg-slate-900 border border-slate-700 px-4 py-2 text-sm text-slate-100 hover:bg-black hover:border-slate-500 transition"
-              >
-                Cerrar sesión
-              </button>
-            </form>
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={loggingOut}
+              className="inline-flex items-center rounded-xl bg-slate-900 border border-slate-700 px-4 py-2 text-sm text-slate-100 hover:bg-black hover:border-slate-500 disabled:opacity-60 transition"
+            >
+              {loggingOut ? "Cerrando..." : "Cerrar sesión"}
+            </button>
           ) : (
             <>
               <Link
