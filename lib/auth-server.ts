@@ -12,6 +12,7 @@ export async function getServerUser() {
       email?: string;
       name?: string;
       picture?: string;
+      displayName?: string;
     };
   } catch {
     return null;
