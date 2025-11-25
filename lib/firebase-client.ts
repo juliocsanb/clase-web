@@ -1,5 +1,5 @@
 import { getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { browserLocalPersistence, browserSessionPersistence, getAuth, setPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -8,6 +8,14 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+export async function configureAuthPersistence(remember: boolean) {
+  await setPersistence(
+    auth,
+    remember ? browserLocalPersistence : browserSessionPersistence
+  );
+}
 
-export const app = getApps().length ? getApps()[0]! : initializeApp(firebaseConfig);
+export const app = getApps().length
+  ? getApps()[0]!
+  : initializeApp(firebaseConfig);
 export const auth = getAuth(app);

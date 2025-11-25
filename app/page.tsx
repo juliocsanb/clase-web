@@ -4,7 +4,7 @@ export default function Home() {
   
   return (
     <>
-      <Header showLoginButton={true} />
+      <Header variant="public" />
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-sky-500/5 to-fuchsia-500/10"></div>
         <div className="max-w-7xl mx-auto px-4 py-24 relative">
