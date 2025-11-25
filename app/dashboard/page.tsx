@@ -13,7 +13,6 @@ export default async function DashboardPage() {
       <Header variant="dashboard" />
 
       <main className="mx-auto max-w-6xl px-4 py-10 space-y-8">
-        {/* Encabezado */}
         <section className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <p className="text-sm text-slate-400">Panel de administración</p>
@@ -30,7 +29,8 @@ export default async function DashboardPage() {
               )}
             </h1>
             <p className="mt-2 text-sm text-slate-400">
-              Desde aquí puedes revisar usuarios, categorías y contenido de la clase.
+              Desde aquí puedes revisar usuarios, categorías y contenido de la
+              clase.
             </p>
           </div>
 
@@ -44,7 +44,6 @@ export default async function DashboardPage() {
           )}
         </section>
 
-        {/* Stats */}
         <section className="grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
             <p className="text-xs uppercase tracking-wide text-slate-400">
@@ -59,7 +58,9 @@ export default async function DashboardPage() {
               Categorías
             </p>
             <p className="mt-2 text-3xl font-semibold text-white">5</p>
-            <p className="mt-1 text-xs text-slate-400">Noticias, Blog, Tareas…</p>
+            <p className="mt-1 text-xs text-slate-400">
+              Noticias, Blog, Tareas…
+            </p>
           </div>
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4">
@@ -68,30 +69,22 @@ export default async function DashboardPage() {
             </p>
             <p className="mt-2 text-3xl font-semibold text-white">18</p>
             <p className="mt-1 text-xs text-slate-400">
-              Número de entradas (solo mock).
+              Número de entradas (mock).
             </p>
           </div>
         </section>
 
-        {/* 2 columnas: usuarios recientes + acciones rápidas */}
         <section className="grid gap-6 lg:grid-cols-[2fr,1fr]">
-          {/* Usuarios recientes */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-white">
                 Usuarios recientes
               </h2>
-              <Link
-                href="/dashboard/users"
-                className="text-xs text-emerald-400 hover:text-emerald-300"
-              >
-                Ver todos
-              </Link>
             </div>
+
             <RecentUsers />
           </div>
 
-          {/* Acciones rápidas */}
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5 space-y-4">
             <h2 className="text-lg font-semibold text-white">
               Acciones rápidas
@@ -104,7 +97,7 @@ export default async function DashboardPage() {
                 href="/dashboard/users"
                 className="block w-full rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold text-sm px-4 py-2 text-left"
               >
-                + Crear usuario demo
+                + Ver usuarios
               </Link>
               <Link
                 href="/dashboard/categories"
