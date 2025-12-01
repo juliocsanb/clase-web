@@ -16,7 +16,7 @@ export async function GET() {
   try {
     const users = await listAuthUsers(50); // límite de ejemplo
     return NextResponse.json({ users });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("Error listando usuarios:", e);
     return NextResponse.json(
       { error: "Error al obtener usuarios" },

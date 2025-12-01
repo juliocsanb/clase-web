@@ -34,8 +34,12 @@ export default function CategoriesClient() {
         throw new Error(data.error ?? `Error ${res.status}`);
       }
       setCategories(data.categories ?? []);
-    } catch (e: any) {
-      setErr(e?.message ?? "Error al cargar categorías");
+    } catch (e: unknown) {
+      if(e instanceof Error){
+        setErr(e?.message ?? "Error al cargar categorías");
+      }else{
+        setErr("Error al cargar categorías desconocido");
+      }
     } finally {
       setLoading(false);
     }
@@ -86,8 +90,12 @@ export default function CategoriesClient() {
 
       await loadCategories();
       resetForm();
-    } catch (e: any) {
-      setErr(e?.message ?? "Error al guardar categoría");
+    } catch (e: unknown) {
+      if(e instanceof Error){
+        setErr(e?.message ?? "Error al guardar categoría");
+      }else{
+        setErr("Error al guardar categoría desconocido");
+      }
     } finally {
       setSaving(false);
     }
@@ -115,8 +123,12 @@ export default function CategoriesClient() {
       if (editingId === id) {
         resetForm();
       }
-    } catch (e: any) {
-      setErr(e?.message ?? "Error al eliminar categoría");
+    } catch (e: unknown) {
+      if(e instanceof Error){
+        setErr(e?.message ?? "Error al eliminar categoría");
+      }else{
+        setErr("Error al eliminar categoría desconocido");
+      }
     }
   }
 

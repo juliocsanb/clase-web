@@ -41,8 +41,12 @@ export default function RecentUsers() {
 
         // Nos quedamos con los primeros 3
         setUsers(sorted.slice(0, 3));
-      } catch (e: any) {
-        setErr(e?.message ?? "Error al cargar usuarios recientes");
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setErr(e?.message ?? "Error al cargar usuarios recientes");
+        }else{
+          setErr("Error al cargar usuarios recientes desconocido");
+        }
       } finally {
         setLoading(false);
       }

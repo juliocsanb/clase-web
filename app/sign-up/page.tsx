@@ -60,8 +60,12 @@ export default function SignUpPage() {
       await sessionLogin();
       router.push("/dashboard");
       router.refresh();
-    } catch (e: any) {
-      setErr(e?.message ?? "Error al registrar");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setErr(e?.message ?? "Error al registrar");
+      }else{
+        setErr("Error al registrar desconocido");
+      }
     } finally {
       setLoading(false);
     }

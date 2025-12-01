@@ -47,8 +47,12 @@ export default function UsersClient() {
 
         const data = await res.json();
         setUsers(data.users ?? []);
-      } catch (e: any) {
-        setErr(e?.message ?? "Error al cargar usuarios");
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setErr(e?.message ?? "Error al cargar usuarios");
+        }else{
+          setErr("Error al cargar usuarios desconocido");
+        }
       } finally {
         setLoading(false);
       }

@@ -56,8 +56,12 @@ export default function LoginPage() {
       await sessionLogin();
       router.push(redirectTo);
       router.refresh();
-    } catch (e: any) {
-      setErr(e?.message ?? "Error al iniciar sesión");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setErr(e?.message ?? "Error al iniciar sesión");
+      }else{
+        setErr("Error al iniciar sesión desconocido");
+      }
     } finally {
       setLoading(false);
     }
