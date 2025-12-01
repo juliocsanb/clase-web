@@ -77,8 +77,12 @@ export default function LoginPage() {
       await sessionLogin();
       router.push(redirectTo);
       router.refresh();
-    } catch (e: any) {
-      setErr(e?.message ?? "Error con Google");
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setErr(e?.message ?? "Error con Google");
+      }else{
+        setErr("Error con Google desconocido");
+      }
     } finally {
       setLoading(false);
     }
